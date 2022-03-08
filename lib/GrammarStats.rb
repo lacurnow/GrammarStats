@@ -1,11 +1,14 @@
 class GrammarStats
   def initialize
-    # ...
+    @check_count_pass = 0
+    @check_count_total = 0
   end
 
-  def check(text) 
+  def check(text)
+    @check_count_total += 1 
     if (text.chr == text.chr.upcase) && (text.end_with?("!", ".", "?"))
-      true
+      @check_count_pass += 1
+      return true
     else
       false
     end
@@ -15,6 +18,8 @@ class GrammarStats
   end
 
   def percentage_good
+    fail "No previous checks done!" if @check_count_total == 0
+    (@check_count_pass / @check_count_total.to_f * 100).ceil
     # Returns as an integer the percentage of texts checked so far that passed
     # the check defined in the `check` method. The number 55 represents 55%.
   end
