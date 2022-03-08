@@ -5,6 +5,7 @@ class GrammarStats
   end
 
   def check(text)
+    fail "No text to check!" if text == ""
     @check_count_total += 1 
     if (text.chr == text.chr.upcase) && (text.end_with?("!", ".", "?"))
       @check_count_pass += 1

@@ -19,7 +19,13 @@ RSpec.describe GrammarStats do
       result = new_GrammarStats.check("Cats cats cats!")
       expect(result).to eq true
     end
+
+    it "raises an error if there is no text to check" do
+      new_GrammarStats = GrammarStats.new
+      expect{ new_GrammarStats.check("") }.to raise_error "No text to check!"
+    end
   end
+  
   describe "#percentage_good" do
     it "returns as an integer the percentage of texts checked so far that passed" do
       new_GrammarStats = GrammarStats.new
